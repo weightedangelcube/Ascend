@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bp1hahnngcsrg"]
+
+[ext_resource type="AudioStream" uid="uid://thxjw656ep8t" path="res://assets/audio/music/Resurrections.mp3" id="1_fndpt"]
+[ext_resource type="PackedScene" uid="uid://c03ib2a87wgbj" path="res://player.tscn" id="2_20w85"]
+[ext_resource type="Script" path="res://scripts/music_player.gd" id="2_txxi6"]
+[ext_resource type="AudioStream" uid="uid://ckbnfopnfuuo1" path="res://assets/audio/sfx/se_live_perfect.mp3" id="3_kcxt6"]
+[ext_resource type="Script" path="res://scripts/sfx_player.gd" id="4_6mqk4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_te5q8"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rn5rg"]
+size = Vector3(60, 2, 60)
+
+[node name="main" type="Node3D"]
+
+[node name="music_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_fndpt")
+bus = &"Music"
+script = ExtResource("2_txxi6")
+
+[node name="sfx_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kcxt6")
+script = ExtResource("4_6mqk4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.558585, 0.829447, -1.15565e-07, -0.0296997, -0.0200009, 0.999359, 0.828915, 0.558227, 0.0358065, 0, 55.2924, 0.159672)
+shadow_enabled = true
+
+[node name="ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+mesh = SubResource("BoxMesh_te5q8")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+shape = SubResource("BoxShape3D_rn5rg")
+
+[node name="camera_pivot" type="Marker3D" parent="."]
+transform = Transform3D(0.999996, 0.00257454, -0.00154764, 0.000480462, 0.371489, 0.928438, 0.00296523, -0.928434, 0.371486, 0, 17.0522, 0)
+
+[node name="Camera3D" type="Camera3D" parent="camera_pivot"]
+
+[node name="player" parent="." instance=ExtResource("2_20w85")]
+collision_mask = 6
+
+[connection signal="beat_report" from="music_player" to="sfx_player" method="_on_beat_report"]

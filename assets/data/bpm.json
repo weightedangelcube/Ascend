@@ -1,0 +1,10 @@
+{
+	"golden": {
+		"path": "res://assets/audio/music/Golden.mp3",
+		"bpm": 60
+	},
+	"resurrections": {
+		"path": "res://assets/audio/music/Resurrections.mp3",
+		"bpm": 72
+	}
+}

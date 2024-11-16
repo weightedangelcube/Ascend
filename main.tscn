@@ -1,10 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bp1hahnngcsrg"]
+[gd_scene load_steps=5 format=3 uid="uid://cpvogr44iacgr"]
 
-[ext_resource type="AudioStream" uid="uid://thxjw656ep8t" path="res://assets/audio/music/Resurrections.mp3" id="1_fndpt"]
-[ext_resource type="PackedScene" uid="uid://c03ib2a87wgbj" path="res://player.tscn" id="2_20w85"]
-[ext_resource type="Script" path="res://scripts/music_player.gd" id="2_txxi6"]
-[ext_resource type="AudioStream" uid="uid://ckbnfopnfuuo1" path="res://assets/audio/sfx/se_live_perfect.mp3" id="3_kcxt6"]
-[ext_resource type="Script" path="res://scripts/sfx_player.gd" id="4_6mqk4"]
+[ext_resource type="PackedScene" uid="uid://p8mymll73byn" path="res://src/audio_player.tscn" id="2_5qtfd"]
+[ext_resource type="PackedScene" uid="uid://c03ib2a87wgbj" path="res://src/player.tscn" id="2_20w85"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_te5q8"]
 size = Vector3(60, 2, 60)
@@ -13,15 +10,6 @@ size = Vector3(60, 2, 60)
 size = Vector3(60, 2, 60)
 
 [node name="main" type="Node3D"]
-
-[node name="music_player" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_fndpt")
-bus = &"Music"
-script = ExtResource("2_txxi6")
-
-[node name="sfx_player" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_kcxt6")
-script = ExtResource("4_6mqk4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.558585, 0.829447, -1.15565e-07, -0.0296997, -0.0200009, 0.999359, 0.828915, 0.558227, 0.0358065, 0, 55.2924, 0.159672)
@@ -47,4 +35,4 @@ transform = Transform3D(0.999996, 0.00257454, -0.00154764, 0.000480462, 0.371489
 [node name="player" parent="." instance=ExtResource("2_20w85")]
 collision_mask = 6
 
-[connection signal="beat_report" from="music_player" to="sfx_player" method="_on_beat_report"]
+[node name="audio_player" parent="." instance=ExtResource("2_5qtfd")]

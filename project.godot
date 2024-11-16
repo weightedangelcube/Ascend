@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="ascend"
-run/main_scene="res://main.tscn"
+run/main_scene="res://src/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
+
+[autoload]
+
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
 [input]
 

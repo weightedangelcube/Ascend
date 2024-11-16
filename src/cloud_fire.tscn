@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://go7chrgwkjls"]
+
+[ext_resource type="Script" path="res://src/cloud_fire.gd" id="1_wbdyj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fs3e1"]
+radius = 0.943942
+
+[node name="Node3D" type="Node3D"]
+
+[node name="cloud" type="Area3D" parent="."]
+script = ExtResource("1_wbdyj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cloud"]
+shape = SubResource("SphereShape3D_fs3e1")
+
+[node name="Sprite3D" type="Sprite3D" parent="cloud"]

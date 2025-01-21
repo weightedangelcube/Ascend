@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dktpkhwiw24te"]
+
+[ext_resource type="Script" path="res://dev/angelcube/ascend/Ascend.cs" id="1_rda5k"]
+[ext_resource type="PackedScene" uid="uid://f8k5t6u52qef" path="res://dev/angelcube/ascend/sound/AudioPlayer.tscn" id="2_npq3i"]
+[ext_resource type="PackedScene" uid="uid://d0p1f33wayx6x" path="res://dev/angelcube/ascend/entity/player/Player.tscn" id="3_jvtek"]
+
+[node name="Ascend" type="Node"]
+script = ExtResource("1_rda5k")
+
+[node name="AudioPlayer" parent="." instance=ExtResource("2_npq3i")]
+
+[node name="Player" parent="." instance=ExtResource("3_jvtek")]
+position = Vector2(301, 204)
+scale = Vector2(2.43855, 2.43855)

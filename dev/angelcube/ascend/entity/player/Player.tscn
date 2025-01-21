@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0p1f33wayx6x"]
+
+[ext_resource type="Texture2D" uid="uid://28h486ub1mx1" path="res://assets/textures/entity/player/placeholder.png" id="1_abq6p"]
+[ext_resource type="Script" path="res://dev/angelcube/ascend/entity/player/Player.cs" id="1_m3eih"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hl1xh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_abq6p")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_djet0"]
+radius = 15.0
+height = 36.0
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_m3eih")
+metadata/_edit_group_ = true
+
+[node name="animatedSprite2d" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_hl1xh")
+animation = &"move"
+
+[node name="collisionShape2d" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 4)
+shape = SubResource("CapsuleShape2D_djet0")

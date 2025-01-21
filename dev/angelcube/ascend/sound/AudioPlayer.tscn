@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://f8k5t6u52qef"]
+
+[ext_resource type="AudioStream" uid="uid://dkhuv2f66vcr0" path="res://assets/sounds/music/sp_demo_golden.mp3" id="2_jg71m"]
+[ext_resource type="Script" path="res://dev/angelcube/ascend/sound/MusicPlayer.cs" id="2_kmhkp"]
+
+[node name="AudioPlayer" type="Node"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jg71m")
+script = ExtResource("2_kmhkp")

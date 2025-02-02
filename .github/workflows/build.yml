@@ -11,7 +11,7 @@ jobs:
         name: windows
         runs-on: ubuntu-latest
         container:
-            image: barichello/godot-ci:mono-${GODOT_VERSION}
+            image: barichello/godot-ci:mono-4.3
         steps:
           - name: checkout
             uses: actions/checkout@v4
@@ -38,7 +38,7 @@ jobs:
         name: linux
         runs-on: ubuntu-latest
         container:
-            image: barichello/godot-ci-mono:${GODOT_VERSION}
+            image: barichello/godot-ci:mono-4.3
         steps:
           - name: checkout
             uses: actions/checkout@v4
@@ -63,7 +63,7 @@ jobs:
         name: macos
         runs-on: ubuntu-latest
         container:
-            image: barichello/godot-ci-mono:${GODOT_VERSION}
+            image: barichello/godot-ci:mono-4.3
         steps:
           - name: checkout
             uses: actions/checkout@v4

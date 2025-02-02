@@ -2,9 +2,9 @@ name: build
 on: [push, pull_request, workflow_dispatch]
 
 env:
-    GODOT-VERSION: 4.3
-    EXPORT-NAME: ascend
-    PROJECT-PATH: .
+    GODOT_VERSION: 4.3
+    EXPORT_NAME: ascend
+    PROJECT_PATH: .
 
 jobs:
     windows:

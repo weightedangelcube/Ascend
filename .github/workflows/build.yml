@@ -7,8 +7,7 @@ env:
     GODOT_VERSION: 4.3
     EXPORT_NAME: ascend
     PROJECT_PATH: .
-    NODE_VERSION: '20.x'
-    DOTNET_VERSION: '6.0.x'
+    DOTNET_VERSION: 6.0.x
 
 jobs:
     windows:

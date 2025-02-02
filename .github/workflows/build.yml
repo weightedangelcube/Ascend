@@ -93,7 +93,7 @@ jobs:
                 mkdir -v -p build/macos
                 EXPORT_DIR="$(readlink -f build)"
                 cd $PROJECT_PATH
-                godot --headless --verbose --export-release "macos" "$EXPORT_DIR/macoss/$EXPORT_NAME.zip"
+                godot --headless --verbose --export-release "macos" "$EXPORT_DIR/macos/$EXPORT_NAME.zip"
           - name: upload artifact
             uses: actions/upload-artifact@v4
             with:

@@ -7,7 +7,7 @@ env:
     GODOT_VERSION: 4.3
     EXPORT_NAME: ascend
     PROJECT_PATH: .
-    DOTNET_VERSION: 6.0.x
+    DOTNET_VERSION: '6.0.x'
 
 jobs:
     windows:
@@ -23,7 +23,7 @@ jobs:
           - name: install dotnet
             uses: actions/setup-dotnet@v4
             with:
-                dotnet-version: ${DOTNET_VERSION}
+                dotnet-version: ${{ env.DOTNET_VERSION }}
           - name: setup
             run: |
                 mkdir -v -p ~/.local/share/godot/export_templates/
@@ -54,7 +54,7 @@ jobs:
           - name: install dotnet
             uses: actions/setup-dotnet@v4
             with:
-                dotnet-version: ${DOTNET_VERSION}
+                dotnet-version: ${{ env.DOTNET_VERSION }}
           - name: setup
             run: |
                 mkdir -v -p ~/.local/share/godot/export_templates/
@@ -83,7 +83,7 @@ jobs:
           - name: install dotnet
             uses: actions/setup-dotnet@v4
             with:
-                dotnet-version: ${DOTNET_VERSION}
+                dotnet-version: ${{ env.DOTNET_VERSION }}
           - name: setup
             run: |
                 mkdir -v -p ~/.local/share/godot/export_templates/

@@ -1,0 +1,86 @@
+name: build
+on: [push, pull_request, workflow_dispatch]
+
+env:
+    GODOT-VERSION: 4.3
+    EXPORT-NAME: ascend
+    PROJECT-PATH: .
+
+jobs:
+    windows:
+        name: windows
+        runs-on: ubuntu-latest
+        container:
+            image: barichello/godot-ci:mono-${GODOT_VERSION}
+        steps:
+          - name: checkout
+            uses: actions/checkout@v4
+            with:
+                lfs: true
+          - name: setup
+            run: |
+                mkdir -v -p ~/.local/share/godot/export_templates/
+                mkdir -v -p ~/.config/
+                mv /root/.config/godot ~/.config/godot
+                mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono
+          - name: build
+            run: |
+                mkdir -v -p build/windows
+                EXPORT_DIR="$(readlink -f build)"
+                cd $PROJECT_PATH
+                godot --headless --verbose --export-release "windows" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
+          - name: upload artifact
+            uses: actions/upload-artifact@v4
+            with:
+                name: windows
+                path: build/windows
+    linux:
+        name: linux
+        runs-on: ubuntu-latest
+        container:
+            image: barichello/godot-ci-mono:${GODOT_VERSION}
+        steps:
+          - name: checkout
+            uses: actions/checkout@v4
+            with:
+                lfs: true
+          - name: setup
+            run: |
+                mkdir -v -p ~/.local/share/godot/export_templates/
+                mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono
+          - name: build
+            run: |
+                mkdir -v -p build/linux
+                EXPORT_DIR="$(readlink -f build)"
+                cd $PROJECT_PATH
+                godot --headless --verbose --export-release "linux" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
+          - name: upload artifact
+            uses: actions/upload-artifact@v4
+            with:
+                name: linux
+                path: build/linux
+    macos:
+        name: macos
+        runs-on: ubuntu-latest
+        container:
+            image: barichello/godot-ci-mono:${GODOT_VERSION}
+        steps:
+          - name: checkout
+            uses: actions/checkout@v4
+            with:
+                lfs: true
+          - name: setup
+            run: |
+                mkdir -v -p ~/.local/share/godot/export_templates/
+                mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono
+          - name: build
+            run: |
+                mkdir -v -p build/macos
+                EXPORT_DIR="$(readlink -f build)"
+                cd $PROJECT_PATH
+                godot --headless --verbose --export-release "macos" "$EXPORT_DIR/macoss/$EXPORT_NAME.zip"
+          - name: upload artifact
+            uses: actions/upload-artifact@v4
+            with:
+                name: macos
+                path: build/macos

@@ -4,14 +4,14 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net7.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <CopyLocalLockFileAssemblies>True</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <Reference Include="discord_game_sdk">
+      <HintPath>$(ProjectDir)/lib/discord_game_sdk.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="discord_game_sdk">
-      <HintPath>$(ProjectDir)\dev\angelcube\ascend\util\connections\discord\lib\discord_game_sdk.dll</HintPath>
-    </Reference>
+    <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
   </ItemGroup>
 </Project>

@@ -25,6 +25,14 @@ file_logging/enable_file_logging=true
 file_logging/log_path="user://logs/latest.log"
 file_logging/max_log_files=1024
 
+[display]
+
+window/size/viewport_width=320
+window/size/viewport_height=180
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
+window/stretch/scale_mode="integer"
+
 [dotnet]
 
 project/assembly_name="ascend"
@@ -32,6 +40,28 @@ project/assembly_name="ascend"
 [editor]
 
 naming/node_name_casing=1
+
+[importer_defaults]
+
+texture={
+"compress/channel_pack": 0,
+"compress/hdr_compression": 1,
+"compress/high_quality": false,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d/compress_to": 0,
+"mipmaps/generate": false,
+"mipmaps/limit": -1,
+"process/fix_alpha_border": true,
+"process/hdr_as_srgb": false,
+"process/hdr_clamp_exposure": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"process/size_limit": 0,
+"roughness/mode": 0,
+"roughness/src_normal": ""
+}
 
 [input]
 

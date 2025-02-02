@@ -1,14 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://dktpkhwiw24te"]
+[gd_scene load_steps=8 format=3 uid="uid://dktpkhwiw24te"]
 
 [ext_resource type="Script" path="res://dev/angelcube/ascend/Ascend.cs" id="1_rda5k"]
+[ext_resource type="Script" path="res://dev/angelcube/ascend/level/Level.cs" id="2_1mxn5"]
 [ext_resource type="PackedScene" uid="uid://f8k5t6u52qef" path="res://dev/angelcube/ascend/sound/AudioPlayer.tscn" id="2_npq3i"]
-[ext_resource type="PackedScene" uid="uid://d0p1f33wayx6x" path="res://dev/angelcube/ascend/entity/player/Player.tscn" id="3_jvtek"]
+[ext_resource type="PackedScene" uid="uid://bthglrph6o5tt" path="res://dev/angelcube/ascend/entity/player/Player.tscn" id="3_jvtek"]
+[ext_resource type="Texture2D" uid="uid://c1otudqrrh5n5" path="res://assets/textures/block/placeholder.png" id="4_0542f"]
+[ext_resource type="Script" path="res://dev/angelcube/ascend/render/Camera.cs" id="4_wsbdh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3035g"]
+size = Vector2(594, 48)
 
 [node name="Ascend" type="Node"]
 script = ExtResource("1_rda5k")
 
+[node name="Level" type="Node" parent="."]
+script = ExtResource("2_1mxn5")
+Border = Rect2(0, 0, 600, 180)
+
 [node name="AudioPlayer" parent="." instance=ExtResource("2_npq3i")]
 
+[node name="Block" type="Node2D" parent="."]
+position = Vector2(162, 156)
+
+[node name="Area" type="Area2D" parent="Block"]
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="Block/Area"]
+position = Vector2(97, 0)
+shape = SubResource("RectangleShape2D_3035g")
+
+[node name="Texture" type="TextureRect" parent="Block/Area"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -24.0
+offset_right = 600.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0542f")
+expand_mode = 2
+stretch_mode = 1
+
 [node name="Player" parent="." instance=ExtResource("3_jvtek")]
-position = Vector2(301, 204)
-scale = Vector2(2.43855, 2.43855)
+position = Vector2(165, 121)
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(160, 90)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("4_wsbdh")

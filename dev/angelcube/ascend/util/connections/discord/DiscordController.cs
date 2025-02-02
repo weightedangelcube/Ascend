@@ -1,37 +1,28 @@
-using System;
-using dev.angelcube.ascend.util.logging;
-using Discord;
+using DiscordRPC;
 
 namespace dev.angelcube.ascend.util.connections.discord {
 	public class DiscordController {
-		public Discord.Discord discord;
+		private readonly DiscordRpcClient _client;
 
-		public DiscordController(Discord.Discord discord) {
-			this.discord = discord;
+		public DiscordController(DiscordRpcClient client) {
+			this._client = client;
 		}
-		// This still only works for x86_64 CPUs.
-		// I haven't implemented it for other CPUs yet.
+		// FIX: might work only for x86
 		public void Init() {
-            ActivityManager activityManager = discord.GetActivityManager();
-            Activity activity = new() {
-                State = "gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming",
-                Details = "Debug Mode",
-				Assets = {
-					LargeImage = "placeholder",
-					LargeText = "This is a debug placeholder"
-				}
-            };
-            activityManager.UpdateActivity(activity, (callback) => {
-                if (callback == Result.Ok) {
-                    Logger.Info("discord", "Activity updated successfully");
-                } else {
-                    Logger.Error("discord", string.Format("Updating activity threw an error: {0}", callback.ToString("D")));
-                }
-            });
+			_client.Initialize();
+			_client.SetPresence(
+				new RichPresence() {
+					State = "Playing gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming",
+					Details = "In debug mode",
+					Assets = new Assets() {
+						LargeImageKey = "placeholder",
+						LargeImageText = "This is a debug placeholder"
+					}
+				});
 		}
 
-		public void Update() {
-			discord?.RunCallbacks();
+		public void Deinit() {
+			_client.Dispose();
 		}
 	}
 }

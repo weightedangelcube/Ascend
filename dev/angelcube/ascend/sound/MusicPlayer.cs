@@ -12,7 +12,7 @@ namespace dev.angelcube.ascend.src.scripts {
 		double SecsPerBeat;
 
 		public override void _Ready() {
-			Dictionary<string, Dictionary> Levels = new(JsonHelper.LoadJson("res://assets/data/levels.json"));
+			Dictionary<string, Dictionary> Levels = new(JsonHelper.LoadJson("res://data/levels.json"));
 			//TODO: change to use GetCurrentLevel
 			Path = (string) Levels["golden"]["music"];
 			

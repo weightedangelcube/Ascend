@@ -7,11 +7,6 @@
     <CopyLocalLockFileAssemblies>True</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="discord_game_sdk">
-      <HintPath>$(ProjectDir)/lib/discord_game_sdk.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
   </ItemGroup>
 </Project>

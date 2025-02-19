@@ -1,16 +1,15 @@
-using dev.angelcube.ascend.util.logging;
 using Godot;
 using Vector2 = Godot.Vector2;
 
 namespace dev.angelcube.ascend.entity.player {
 	public partial class Player : CharacterBody2D {
-		private AnimatedSprite2D _sprite;
+		private AnimatedSprite2D sprite;
 
-		private float _runSpeed = 60;
-		private float _jumpSpeed = 180;
-		private float _gravity = 500;
+		private float runSpeed = 60;
+		private float jumpSpeed = 180;
+		private float gravity = 500;
 
-		private Vector2 UpdateInput(Vector2 velocity) {
+		private Vector2 updateInput(Vector2 velocity) {
 			Vector2 currentVelocity = velocity;
 			currentVelocity.X = 0;
 			
@@ -21,34 +20,34 @@ namespace dev.angelcube.ascend.entity.player {
 			bool jump = Input.IsActionPressed("Jump");
 
 			if (right) {
-				currentVelocity.X += _runSpeed;
+				currentVelocity.X += runSpeed;
 			}
 			if (left) {
-				currentVelocity.X -= _runSpeed;
+				currentVelocity.X -= runSpeed;
 			}
 			if (jump && IsOnFloor()) {
-				currentVelocity.Y -= _jumpSpeed;
+				currentVelocity.Y -= jumpSpeed;
 			}
 			return currentVelocity;
 		}
 
-		private void UpdateSprites() {
-			_sprite.FlipH = Velocity.X switch {
+		private void updateSprites() {
+			sprite.FlipH = Velocity.X switch {
 				> 0 => false,
 				< 0 => true,
-				_ => _sprite.FlipH
+				_ => sprite.FlipH
 			};
 			if (IsOnFloor()) {
 				if (Velocity.X != 0) {
-					_sprite.Play("walk");
+					sprite.Play("walk");
 				} else {
-					_sprite.Stop();
+					sprite.Stop();
 				}
 			} else {
 				if (Velocity.Y < 0) {
-					_sprite.Play("up");
+					sprite.Play("up");
 				} else if (Velocity.Y > 0) {
-					_sprite.Play("down");
+					sprite.Play("down");
 				}
 			}
 		}
@@ -61,13 +60,13 @@ namespace dev.angelcube.ascend.entity.player {
         public override void _PhysicsProcess(double delta) {
 	        Vector2 currentVelocity = Velocity;
 	        // update gravity
-	        currentVelocity.Y += _gravity * (float) delta;
+	        currentVelocity.Y += gravity * (float) delta;
 	        // update inputs and movement
-	        currentVelocity = UpdateInput(currentVelocity);
+	        currentVelocity = updateInput(currentVelocity);
 	        // return value
 			Velocity = currentVelocity;
 			MoveAndSlide();
-	        UpdateSprites();
+	        updateSprites();
         }
     }
 }

@@ -2,18 +2,25 @@ using DiscordRPC;
 
 namespace dev.angelcube.ascend.util.connections.discord {
 	public class DiscordController {
-		private readonly DiscordRpcClient _client;
+		private readonly DiscordRpcClient client;
 
 		public DiscordController(DiscordRpcClient client) {
-			this._client = client;
+			this.client = client;
 		}
 		// FIX: might work only for x86
-		public void Init() {
-			_client.Initialize();
-			_client.SetPresence(
+		public void init() {
+			client.Initialize();
+			client.SetPresence(
 				new RichPresence() {
-					State = "Playing gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming gaming",
-					Details = "In debug mode",
+					State = "Gaming!",
+				});
+		}
+		
+		public void initDebug() {
+			client.Initialize();
+			client.SetPresence(
+				new RichPresence() {
+					State = "Debugging",
 					Assets = new Assets() {
 						LargeImageKey = "placeholder",
 						LargeImageText = "This is a debug placeholder"
@@ -21,8 +28,8 @@ namespace dev.angelcube.ascend.util.connections.discord {
 				});
 		}
 
-		public void Deinit() {
-			_client.Dispose();
+		public void deinit() {
+			client.Dispose();
 		}
 	}
 }

@@ -17,7 +17,15 @@ mono_crash.*.json
 plugins/
 /android/
 
-.temp/
-
+# vscode stuff
 .vscode/
+
+# jetbrains stuff
+.idea/
+
+# .net ignores
+*.DotSettings.user
+
+# angel's stuff
 act.exe
+DEBUG/

@@ -9,6 +9,7 @@ namespace dev.angelcube.ascend {
 	public partial class Ascend : Node {
         private const string DiscordClientId = "1331326288383967375";
         private DiscordController _discordController;
+        private readonly Logger loggerMain = new("main");
         
         private CharacterBody2D _player;
         private Camera2D _camera;
@@ -25,12 +26,13 @@ namespace dev.angelcube.ascend {
                     _level = level;
                 }
             }
-            Logger.Info("main", "Loading ascend 0.1.0+alpha.1, enjoy!");
             try {
                 _discordController = new DiscordController(new DiscordRpcClient(DiscordClientId));
                 _discordController.Init();
             } catch (DllNotFoundException e) {
                 Logger.Error("discord", $"Discord GameSDK could not be found: {e}");
+            loggerMain.info("Initializing ascend, enjoy!");
+            discordController = new DiscordController(new DiscordRpcClient(DISCORD_CLIENT_ID));
             }
         }
 
@@ -42,7 +44,8 @@ namespace dev.angelcube.ascend {
         
         public override void _Notification(int notificationId) {
             if (notificationId == NotificationWMCloseRequest) {
-                _discordController.Deinit();
+                loggerMain.deinit();
+                discordController.deinit();
                 GetTree().Quit();
             }
         }

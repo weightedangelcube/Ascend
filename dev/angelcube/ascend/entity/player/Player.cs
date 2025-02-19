@@ -54,8 +54,8 @@ namespace dev.angelcube.ascend.entity.player {
 		}
 		
         public override void _Ready() {
-			Logger.Info("main", "Player scripts successfully loaded");
-            _sprite = GetNode<AnimatedSprite2D>("Sprite");
+	        // Ascend.LoggerMain.Info("Initializing player scripts...");
+            sprite = GetNode<AnimatedSprite2D>("Sprite");
         }
 
         public override void _PhysicsProcess(double delta) {

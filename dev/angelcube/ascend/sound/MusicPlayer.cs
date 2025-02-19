@@ -20,7 +20,7 @@ namespace dev.angelcube.ascend.src.scripts {
 			SecsPerBeat = 60 / BPM;
 
 			// Play();
-			Logger.Info("main", "Music player successfully loaded");
+			// Ascend.LoggerMain.Info("Initializing music player...");
 		}
 
 		public override void _Process(double delta) {
